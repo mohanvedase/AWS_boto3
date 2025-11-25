@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Wiedervereinigung Deutschlands - German Reunification</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section with Animated Background */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Animated Berlin Wall Background */
+    .berlin-wall-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .wall-section {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: wallCrumble 8s ease-in-out infinite;
+    }
+
+    @keyframes wallCrumble {
+      0% { opacity: 1; transform: translateX(0) scale(1); }
+      50% { opacity: 0.7; transform: translateX(-5%) scale(1.05); }
+      100% { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    .graffiti-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      animation: fadeInOut 6s ease-in-out infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      font-style: italic;
+      opacity: 0.95;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      color: #ffd369;
+      font-size: 2rem;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-20px); }
+      60% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(43, 58, 85, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #ffd369;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255, 211, 105, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .section-icon {
+      font-size: 3rem;
+      filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.3));
+    }
+
+    h2 {
+      color: #1e3d59;
+      font-size: 2.5rem;
+      border-bottom: 3px solid #ffd369;
+      padding-bottom: 10px;
+      position: relative;
+    }
+
+    .german-subtitle {
+      font-size: 1.3rem;
+      color: #666;
+      font-style: italic;
+      margin-top: 5px;
+    }
+
+    .content-card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .content-card p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .german-quote {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-style: italic;
+      font-size: 1.2rem;
+      margin: 20px 0;
+      border-left: 5px solid #ffd369;
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #ffd369 0%, #1e3d59 100%);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      padding-right: 50%;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      padding-left: 50%;
+    }
+
+    .timeline-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .timeline-date {
+      display: inline-block;
+      background: #ffd369;
+      color: #1e3d59;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: #ffd369;
+      border: 4px solid #1e3d59;
+      border-radius: 50%;
+      top: 0;
+    }
+
+    /* Leaders Section */
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .leader-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .leader-card:hover {
+      transform: translateY(-10px) rotate(2deg);
+    }
+
+    .leader-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .leader-card .role {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      background: #2b3a55;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      margin-top: 20px;
+    }
+
+    .footer-links a {
+      color: #ffd369;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+
+      .timeline::before {
+        left: 30px;
+      }
+
+      .timeline-item:nth-child(odd) {
+        padding-right: 0;
+        padding-left: 60px;
+        text-align: left;
+      }
+
+      .timeline-item:nth-child(even) {
+        padding-left: 60px;
+      }
+
+      .timeline-marker {
+        left: 30px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <div class="hero">
+    <!-- Animated Berlin Wall SVG Background -->
+    <!-- German Flag Layer -->
+    <svg class="berlin-wall-bg" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="animation: fadeInOut 8s ease-in-out infinite;">
+      <!-- Transparent German Flag -->
+      <g opacity="0.25">
+        <rect x="0" y="0" width="1200" height="267" fill="#000000"/>
+        <rect x="0" y="267" width="1200" height="266" fill="#DD0000"/>
+        <rect x="0" y="533" width="1200" height="267" fill="#FFCE00"/>
+      </g>
+    </svg>
+
+    <!-- Graffiti Layer -->
+    <svg class="berlin-wall-bg graffiti-layer" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <!-- Graffiti Art -->
+      <text x="100" y="400" font-size="80" fill="#FF6B6B" font-weight="bold" opacity="0.8" transform="rotate(-5 100 400)">FREEDOM</text>
+      <text x="700" y="450" font-size="70" fill="#4ECDC4" font-weight="bold" opacity="0.8" transform="rotate(3 700 450)">FREIHEIT</text>
+      
+      <!-- Peace symbol -->
+      <circle cx="500" cy="350" r="60" stroke="#FFD93D" stroke-width="8" fill="none" opacity="0.7"/>
+      <line x1="500" y1="290" x2="500" y2="410" stroke="#FFD93D" stroke-width="8" opacity="0.7"/>
+      <line x1="500" y1="350" x2="458" y2="395" stroke="#FFD93D" stroke-width="8" opacity="0.7"/>
+      <line x1="500" y1="350" x2="542" y2="395" stroke="#FFD93D" stroke-width="8" opacity="0.7"/>
+      
+      <!-- Hearts -->
+      <path d="M 950 320 C 950 300 930 280 910 280 C 890 280 880 290 880 300 C 880 290 870 280 850 280 C 830 280 810 300 810 320 C 810 350 880 390 880 390 C 880 390 950 350 950 320 Z" 
+            fill="#E63946" opacity="0.7"/>
+      
+      <!-- Spray paint effects -->
+      <circle cx="250" cy="500" r="40" fill="#6A4C93" opacity="0.3"/>
+      <circle cx="1000" cy="550" r="35" fill="#FF6B6B" opacity="0.3"/>
+      <circle cx="400" cy="280" r="30" fill="#4ECDC4" opacity="0.3"/>
+      
+      <!-- "1989" in large numbers -->
+      <text x="150" y="600" font-size="120" fill="#FFFFFF" font-weight="bold" opacity="0.4" style="paint-order: stroke; stroke: #000; stroke-width: 3px;">1989</text>
+    </svg>
+    
+    <div class="hero-content">
+      <h1>🇩🇪 Die Wiedervereinigung</h1>
+      <p>German Reunification</p>
+      <p class="hero-subtitle">Der Fall der Mauer & Die Geburt einer vereinten Nation</p>
+      <p style="font-size: 1.1rem; opacity: 0.95; margin-top: 10px;">3. Oktober 1990 | Tag der Deutschen Einheit</p>
+    </div>
+    
+    <div class="scroll-indicator">↓</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#fall">🧱 Der Mauerfall</a></li>
+      <li><a href="#timeline">📅 Zeitstrahl</a></li>
+      <li><a href="#leaders">👥 Führungspersönlichkeiten</a></li>
+      <li><a href="#challenges">⚡ Herausforderungen</a></li>
+      <li><a href="#impact">🌍 Weltweite Auswirkungen</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Fall of Berlin Wall Section -->
+    <section id="fall">
+      <div class="section-header">
+        <span class="section-icon">🧱</span>
+        <div>
+          <h2>Der Fall der Berliner Mauer</h2>
+          <p class="german-subtitle">The Fall of the Berlin Wall</p>
+        </div>
+      </div>
+      
+      <div class="content-card">
+        <p>On November 9, 1989, the <strong>Berliner Mauer</strong> (Berlin Wall)—erected in 1961 to prevent East Germans from fleeing to the West—came tumbling down. This concrete barrier, known as the "<strong>Schandmauer</strong>" (Wall of Shame) by West Germans, had stood for 28 years as the most visible symbol of the <strong>Eiserner Vorhang</strong> (Iron Curtain) dividing Europe during the Cold War.</p>
+        
+        <div class="german-quote">
+          "Niemand hat die Absicht, eine Mauer zu errichten!" <br>
+          <small>- Walter Ulbricht, DDR Leader, June 1961 (Two months before building the wall)</small><br>
+          <em>"No one has the intention of building a wall!"</em>
+        </div>
+        
+        <p>The fall was triggered by a perfect storm of factors: economic collapse in <strong>Ostdeutschland</strong> (East Germany/DDR - Deutsche Demokratische Republik), the rise of peaceful protest movements with citizens chanting "<strong>Wir sind das Volk!</strong>" (We are the people!), Mikhail Gorbachev's reforms in the Soviet Union (<strong>Glasnost</strong> and <strong>Perestroika</strong>), and mounting pressure from citizens demanding <strong>Freiheit</strong> (freedom).</p>
+        
+        <p>On that historic evening, a miscommunication during a press conference led to thousands of <strong>Ossis</strong> (East Germans) flooding the checkpoints, and border guards, overwhelmed and without orders to stop them, opened the gates. What followed was an outpouring of joy as families separated for decades reunited, and young people from both sides climbed atop the wall with hammers and pickaxes, transforming it from a symbol of division into a monument of freedom.</p>
+
+        <div class="german-quote">
+          "Wir sind ein Volk!" <br>
+          <em>- Chanted by crowds after the wall fell: "We are one people!"</em>
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-number">28</div>
+          <div class="stat-label">Jahre der Teilung<br>(Years of Division)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">155</div>
+          <div class="stat-label">Kilometer Mauer<br>(Kilometers of Wall)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">140+</div>
+          <div class="stat-label">Tote an der Grenze<br>(Deaths at Border)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">1989</div>
+          <div class="stat-label">Jahr der Freiheit<br>(Year of Freedom)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline">
+      <div class="section-header">
+        <span class="section-icon">📅</span>
+        <div>
+          <h2>Zeitstrahl der Wiedervereinigung</h2>
+          <p class="german-subtitle">Timeline to Reunification</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Mai 1945</span>
+            <h3>Ende des Zweiten Weltkriegs</h3>
+            <p>Germany surrenders (<strong>Kapitulation</strong>) and is divided into four occupation zones (<strong>Besatzungszonen</strong>) controlled by the USA, USSR, UK, and France. Berlin is also split into four sectors, creating <strong>West-Berlin</strong> and <strong>Ost-Berlin</strong>.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">August 1961</span>
+            <h3>Bau der Berliner Mauer</h3>
+            <p>The <strong>DDR</strong> (Deutsche Demokratische Republik) constructs the Berlin Wall overnight (<strong>Antifaschistischer Schutzwall</strong> - "Anti-Fascist Protection Rampart" in DDR propaganda) to stop the mass exodus of its citizens to the West. It becomes the defining symbol of the Cold War.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">9. November 1989</span>
+            <h3>Der Mauerfall - Fall of the Wall</h3>
+            <p>After mounting protests and a bungled press conference by Günter Schabowski, the Berlin Wall falls. Thousands celebrate as <strong>Ossis</strong> and <strong>Wessis</strong> (West Germans) freely cross the border at <strong>Checkpoint Charlie</strong> and <strong>Brandenburger Tor</strong> (Brandenburg Gate).</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">18. März 1990</span>
+            <h3>Erste freie Wahlen - First Free Elections</h3>
+            <p>East Germany holds its first (and only) free elections to the <strong>Volkskammer</strong> (People's Chamber). Pro-unification parties win decisively, accelerating the path to <strong>Wiedervereinigung</strong> (reunification).</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">1. Juli 1990</span>
+            <h3>Währungsunion - Currency Union</h3>
+            <p>The <strong>Deutsch-Deutsche Währungs-, Wirtschafts- und Sozialunion</strong> takes effect. The West German <strong>Deutsche Mark</strong> (D-Mark) replaces the East German Mark, unifying the economies.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">12. September 1990</span>
+            <h3>Zwei-plus-Vier-Vertrag</h3>
+            <p>The "Two Plus Four Agreement" (<strong>Vertrag über die abschließende Regelung in Bezug auf Deutschland</strong>) confirms Germany's borders and full sovereignty (<strong>Souveränität</strong>), with approval from the four Allied powers.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">3. Oktober 1990</span>
+            <h3>Tag der Deutschen Einheit</h3>
+            <p>The <strong>DDR</strong> officially joins the <strong>Bundesrepublik Deutschland</strong> (Federal Republic of Germany). Germany becomes one nation again after 45 years of division. This date becomes the national holiday: <strong>Tag der Deutschen Einheit</strong> (Day of German Unity).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leaders Section -->
+    <section id="leaders">
+      <div class="section-header">
+        <span class="section-icon">👥</span>
+        <div>
+          <h2>Führungspersönlichkeiten</h2>
+          <p class="german-subtitle">Key Leaders in Reunification</p>
+        </div>
+      </div>
+
+      <div class="leaders-grid">
+        <div class="leader-card">
+          <h3>Helmut Kohl</h3>
+          <p class="role">Bundeskanzler (Chancellor) of West Germany</p>
+          <p>Known as the "<strong>Kanzler der Einheit</strong>" (Chancellor of Unity), Kohl seized the moment and pushed aggressively for rapid reunification. His <strong>Zehn-Punkte-Programm</strong> (10-Point Program) provided the roadmap for unity.</p>
+        </div>
+
+        <div class="leader-card">
+          <h3>Mikhail Gorbachev</h3>
+          <p class="role">Soviet Leader - <strong>Generalsekretär</strong></p>
+          <p>His policies of <strong>Glasnost</strong> (openness) and <strong>Perestroika</strong> (restructuring) weakened Soviet control over Eastern Europe, making reunification possible. He famously said: "Wer zu spät kommt, den bestraft das Leben" (Life punishes those who come too late).</p>
+        </div>
+
+        <div class="leader-card">
+          <h3>George H.W. Bush</h3>
+          <p class="role">US President - <strong>Präsident</strong></p>
+          <p>Provided crucial diplomatic support and worked to ensure NATO acceptance of a unified Germany while maintaining good relations with Gorbachev during this delicate transition period.</p>
+        </div>
+
+        <div class="leader-card">
+          <h3>Hans Modrow</h3>
+          <p class="role">East German Premier - <strong>Ministerpräsident der DDR</strong></p>
+          <p>Led East Germany during its final months as <strong>Letzter Ministerpräsident der DDR</strong>, managing the transition from communist rule and negotiating terms with the West during the <strong>Wende</strong> (turning point).</p>
+        </div>
+
+        <div class="leader-card">
+          <h3>Lothar de Maizière</h3>
+          <p class="role">Last DDR Premier - <strong>Letzter Ministerpräsident</strong></p>
+          <p>First democratically elected leader of East Germany who signed the <strong>Einigungsvertrag</strong> (Unification Treaty) with West Germany in August 1990.</p>
+        </div>
+
+        <div class="leader-card">
+          <h3>Willy Brandt</h3>
+          <p class="role">Former Chancellor - <strong>Ehemaliger Bundeskanzler</strong></p>
+          <p>Pioneer of <strong>Ostpolitik</strong> (Eastern Policy) in the 1970s, which normalized relations with East Germany. His famous words at the Wall's fall: "Jetzt wächst zusammen, was zusammengehört" (Now grows together what belongs together).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges">
+      <div class="section-header">
+        <span class="section-icon">⚡</span>
+        <div>
+          <h2>Wirtschaftliche und soziale Herausforderungen</h2>
+          <p class="german-subtitle">Economic & Social Challenges</p>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>🏭 Wirtschaftliche Ungleichheit (Economic Disparity)</h3>
+        <p>The East German economy was in shambles—outdated industries (<strong>veraltete Industrien</strong>), inefficient production, environmental degradation, and crumbling infrastructure (<strong>marode Infrastruktur</strong>). West Germany faced the enormous task of modernizing the East through the <strong>Aufbau Ost</strong> (Reconstruction of the East), costing an estimated 1.5 to 2 trillion euros over two decades.</p>
+        
+        <div class="german-quote">
+          "Blühende Landschaften" <br>
+          <em>- Helmut Kohl's promise: "Blooming landscapes" - referring to prosperous East Germany</em>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>💼 Arbeitslosigkeit (Unemployment Crisis)</h3>
+        <p>As uncompetitive East German factories closed, unemployment skyrocketed. The <strong>Treuhandanstalt</strong> (Trust Agency) was established to privatize 8,000 East German state-owned enterprises (<strong>Volkseigene Betriebe - VEB</strong>). At its peak, nearly 20% of East Germans were unemployed. Many skilled workers migrated westward, creating a "<strong>Braindrain</strong>" that further hampered eastern development.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>🧠 Die Mauer im Kopf (Cultural Integration - The Wall in the Mind)</h3>
+        <p>The "<strong>Mauer im Kopf</strong>" (Wall in the Mind) proved harder to demolish than the physical wall. East and West Germans had lived under vastly different political systems for 45 years, creating different values, expectations, and life experiences. Social tensions, mutual stereotypes ("<strong>Ossis</strong>" vs "<strong>Wessis</strong>"), and feelings of being <strong>Bürger zweiter Klasse</strong> (second-class citizens) persisted for years.</p>
+        
+        <p>East Germans often felt patronized and their achievements under the DDR dismissed as "<strong>Unrechtsstaat</strong>" (illegitimate state), while West Germans felt burdened by the enormous costs of reunification through the <strong>Solidaritätszuschlag</strong> (Solidarity Surcharge).</p>
+      </div>
+
+      <div class="content-card">
+        <h3>🏘️ Infrastruktur-Überholung (Infrastructure Overhaul)</h3>
+        <p>East Germany's roads (<strong>Straßen</strong>), railways (<strong>Eisenbahnen</strong>), telecommunications, and public buildings (<strong>öffentliche Gebäude</strong>) required massive investment. The <strong>Solidaritätszuschlag</strong> (Solidarity Tax) was introduced in 1991 to fund reconstruction, initially set at 7.5% of income tax, and remains partially in place even today for high earners.</p>
+        
+        <p>The <strong>Plattenbau</strong> (prefabricated concrete apartment blocks) of East Germany needed modernization, and entire city centers required restoration to revive the <strong>Altstadt</strong> (old town) architecture destroyed during World War II.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>📜 Umgang mit der Stasi (Dealing with the Stasi)</h3>
+        <p>The dissolution of the <strong>Ministerium für Staatssicherheit</strong> (Ministry for State Security - Stasi) revealed extensive surveillance of East German citizens. The <strong>Stasi-Unterlagen-Behörde</strong> (Stasi Records Agency) was created to manage millions of files, allowing citizens to access their own records and confront informants (<strong>Inoffizielle Mitarbeiter - IMs</strong>).</p>
+        
+        <div class="german-quote">
+          "Die Akten öffnen heißt Wunden öffnen" <br>
+          <em>"Opening the files means opening wounds" - Common sentiment about accessing Stasi records</em>
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-number">€2T+</div>
+          <div class="stat-label">Kosten der Einheit<br>(Cost of Reunification)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">16M</div>
+          <div class="stat-label">Ossis (East Germans)<br>joined West Germany</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Neue Bundesländer<br>(New Federal States)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Jahre seit Einheit<br>(Years Since Unity)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact">
+      <div class="section-header">
+        <span class="section-icon">🌍</span>
+        <div>
+          <h2>Auswirkungen auf Europa und die Welt</h2>
+          <p class="german-subtitle">Impact on Europe and the World</p>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>🕊️ Ende des Kalten Krieges (End of the Cold War)</h3>
+        <p>German reunification symbolized the definitive end of the <strong>Kalter Krieg</strong> (Cold War). It demonstrated the triumph of <strong>Demokratie</strong> (democracy) and <strong>Marktwirtschaft</strong> (market economy) over authoritarian communism, inspiring democratic movements worldwide. The fall of the <strong>Eiserner Vorhang</strong> (Iron Curtain) reshaped the entire European continent.</p>
+        
+        <div class="german-quote">
+          "Das Ende der Geschichte" <br>
+          <em>- Francis Fukuyama's famous declaration: "The End of History" after the Cold War's conclusion</em>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>🇪🇺 Europäische Integration (European Integration)</h3>
+        <p>Reunified Germany became the engine of European integration. It was instrumental in creating the <strong>Europäische Union</strong> (European Union) through the Maastricht Treaty in 1993, introducing the <strong>Euro</strong> currency in 1999, and expanding the EU eastward to include former communist nations. Germany's commitment to <strong>Europäische Einigung</strong> (European unification) helped ensure peaceful integration.</p>
+        
+        <p>Chancellor Kohl famously said European integration and German reunification were "<strong>zwei Seiten einer Medaille</strong>" (two sides of the same coin), emphasizing that a unified Germany must be embedded in a unified Europe.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>🛡️ NATO-Erweiterung (NATO Expansion)</h3>
+        <p>Germany's successful integration of its eastern territories paved the way for <strong>NATO-Osterweiterung</strong> (NATO's eastern expansion). Former <strong>Warschauer Pakt</strong> (Warsaw Pact) nations—Poland (<strong>Polen</strong>), Czech Republic (<strong>Tschechien</strong>), Hungary (<strong>Ungarn</strong>)—joined NATO, fundamentally reshaping European security architecture (<strong>Sicherheitsarchitektur</strong>).</p>
+      </div>
+
+      <div class="content-card">
+        <h3>💪 Deutschland als globale Macht (Germany as a Global Power)</h3>
+        <p>Reunification transformed Germany into Europe's largest economy (<strong>größte Volkswirtschaft</strong>) and most populous nation. With 83 million people and a GDP of over €3 trillion, <strong>die Bundesrepublik</strong> became the economic powerhouse of Europe. Today, it serves as a key player in international affairs through <strong>Außenpolitik</strong> (foreign policy), though it carefully balances power with responsibility given its 20th-century history.</p>
+        
+        <p>Germany's approach to reunification demonstrated that it learned from its past, becoming a "<strong>Zivilmacht</strong>" (civilian power) that promotes multilateralism, international law, and peaceful conflict resolution.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>✨ Symbol der Hoffnung (Symbol of Hope)</h3>
+        <p>The peaceful reunification of Germany remains an inspiration for other divided nations—from Korea (<strong>Korea</strong>) to Cyprus (<strong>Zypern</strong>)—showing that even seemingly permanent divisions can be overcome through dialogue, patience, and commitment to democratic values (<strong>demokratische Werte</strong>).</p>
+        
+        <div class="german-quote">
+          "Wenn die Mauer fällt, fallen alle Mauern" <br>
+          <em>"When the Wall falls, all walls fall" - Message of hope for divided nations</em>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>🎭 Kulturelle Renaissance (Cultural Renaissance)</h3>
+        <p>Post-reunification Berlin became the capital (<strong>Hauptstadt</strong>) and transformed into one of Europe's most vibrant cultural centers. The city's art scene, music culture, and creative industries flourished. Landmarks like the rebuilt <strong>Reichstag</strong> with its glass dome symbolize transparency in German democracy, while the preserved sections of the Wall serve as powerful reminders at the <strong>East Side Gallery</strong> and <strong>Gedenkstätte Berliner Mauer</strong> (Berlin Wall Memorial).</p>
+      </div>
+    </section>
+
+    <!-- New Section: Legacy -->
+    <section id="legacy">
+      <div class="section-header">
+        <span class="section-icon">🏛️</span>
+        <div>
+          <h2>Das Erbe der Wiedervereinigung</h2>
+          <p class="german-subtitle">The Legacy of Reunification</p>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>🎊 Tag der Deutschen Einheit (Day of German Unity)</h3>
+        <p>Every October 3rd, Germany celebrates its national holiday, the <strong>Tag der Deutschen Einheit</strong>. Unlike many national holidays commemorating military victories, this celebrates peaceful democratic change. The celebration rotates between different German cities each year, with the <strong>Bürgerfest</strong> (citizens' festival) bringing together people from all <strong>Bundesländer</strong> (federal states).</p>
+      </div>
+
+      <div class="content-card">
+        <h3>📚 Aufarbeitung der Geschichte (Coming to Terms with History)</h3>
+        <p>Germany has pursued rigorous <strong>Vergangenheitsbewältigung</strong> (coming to terms with the past), addressing both the Nazi era and the DDR dictatorship. The <strong>Bundesstiftung Aufarbeitung</strong> (Federal Foundation for the Reappraisal of the SED Dictatorship) works to document and educate about life under communist rule.</p>
+        
+        <p>Museums like the <strong>DDR Museum</strong> in Berlin and the <strong>Zeitgeschichtliches Forum</strong> in Leipzig preserve the memory of divided Germany, ensuring future generations understand both the hardships and the triumph of reunification.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>🌱 Ongoing Challenges and Progress</h3>
+        <p>While significant progress has been made, disparities remain. Eastern Germany (<strong>Neue Bundesländer</strong>) still has lower average incomes, higher unemployment in some regions, and demographic challenges due to migration to the West. However, cities like Dresden, Leipzig, and Jena have become thriving centers of innovation, culture, and economic growth.</p>
+        
+        <p>The concept of <strong>innere Einheit</strong> (inner unity) remains a work in progress, but each generation grows up more unified than the last. Young Germans who've never known division embody the promise of "<strong>Einheit in Vielfalt</strong>" (unity in diversity).</p>
+        
+        <div class="german-quote">
+          "Es ist vollbracht - aber nicht vollendet" <br>
+          <em>"It is accomplished - but not completed" - Recognizing reunification is an ongoing process</em>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <h3 style="margin-bottom: 20px;">🇩🇪 Einigkeit und Recht und Freiheit 🇩🇪</h3>
+    <p style="font-style: italic; font-size: 1.1rem;">"Unity and Justice and Freedom" - German National Anthem</p>
+    
+    <div style="margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
+      <h4 style="margin-bottom: 15px;">Wichtige Deutsche Begriffe (Important German Terms)</h4>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: left; max-width: 900px; margin: 0 auto;">
+        <div><strong>DDR</strong> - Deutsche Demokratische Republik (East Germany)</div>
+        <div><strong>BRD</strong> - Bundesrepublik Deutschland (West Germany)</div>
+        <div><strong>Wiedervereinigung</strong> - Reunification</div>
+        <div><strong>Mauerfall</strong> - Fall of the Wall</div>
+        <div><strong>Wende</strong> - The Turning Point (1989-90)</div>
+        <div><strong>Trabi</strong> - Trabant (East German car)</div>
+        <div><strong>Ostalgie</strong> - Nostalgia for East Germany</div>
+        <div><strong>Grenze</strong> - Border</div>
+      </div>
+    </div>
+
+    <p>&copy; 2025 Die Geschichte der deutschen Wiedervereinigung</p>
+    <p>German Reunification Historical Archive</p>
+    
+    <div class="footer-links">
+      <a href="#fall">Der Mauerfall</a>
+      <a href="#timeline">Zeitstrahl</a>
+      <a href="#leaders">Führungspersönlichkeiten</a>
+      <a href="#impact">Auswirkungen</a>
+    </div>
+    
+    <p style="margin-top: 30px; font-size: 1.2rem; font-weight: bold;">
+      "Wir sind ein Volk!" 🇩🇪
+    </p>
+    <p style="font-size: 0.9rem; opacity: 0.8; font-style: italic;">
+      We are one people - The cry of unity that echoed through history
+    </p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Add parallax effect to hero background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero && scrolled < hero.offsetHeight) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

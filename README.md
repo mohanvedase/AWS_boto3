@@ -1,1 +1,1 @@
-# AWS_boto3
+this scripts for automate aws
